@@ -8,7 +8,7 @@
   <!-- MATERIAL CDN -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
   <!-- STYLESHEET -->
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="statics/css/style.css">
 </head>
 <body>
   <div class="container">
@@ -35,7 +35,7 @@
           <span class="material-icons-sharp">computer</span>
           <h3>POS Kasir</h3>
         </a>
-        <a href="#">
+        <a href="barang">
           <span class="material-icons-sharp">inventory</span>
           <h3>Barang</h3>
         </a>
@@ -142,41 +142,19 @@
             </tr>
           </thead>
           <tbody>
+            {% for item in items %}
             <tr>
-              <td>23001</td>
-              <td>Kopi Robusta</td>
-              <td>Gram</td>
-              <td class="warning">1000</td>
+              <td>{{ item.id }}</td>
+              <td>{{ item.produk }}</td>
+              <td>{{ item.satuan }}</td>
+              <td 
+                {% if item.jumlah == 0 %}
+                style="color: red;"
+                {% endif %}
+              >{{ item.jumlah }}</td>
               <td class="primary"> Detail</td>
             </tr>
-            <tr>
-              <td>23001</td>
-              <td>Kopi Robusta</td>
-              <td>Gram</td>
-              <td class="warning">1000</td>
-              <td class="primary"> Detail</td>
-            </tr>
-            <tr>
-              <td>23001</td>
-              <td>Kopi Robusta</td>
-              <td>Gram</td>
-              <td class="warning">1000</td>
-              <td class="primary"> Detail</td>
-            </tr>
-            <tr>
-              <td>23001</td>
-              <td>Kopi Robusta</td>
-              <td>Gram</td>
-              <td class="warning">1000</td>
-              <td class="primary"> Detail</td>
-            </tr>
-            <tr>
-              <td>23001</td>
-              <td>Kopi Robusta</td>
-              <td>Gram</td>
-              <td class="warning">1000</td>
-              <td class="primary"> Detail</td>
-            </tr>
+            {% endfor %}
           </tbody>
         </table>
         <a href="">Show All</a>
@@ -201,7 +179,7 @@
             <small class="text-muted">Admin</small>
           </div>
           <div class="profile-photo">
-            <img src="./img/profile-1.jpg">
+            <img src="statics/img/profile-1.jpg">
           </div>
         </div>
       </div>
