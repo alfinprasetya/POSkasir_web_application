@@ -1,6 +1,13 @@
 """ Products API Routes """
 from fastapi import APIRouter
-from app.database.dummy import items
+from sqlalchemy.orm import sessionmaker
+from app.database.db import engine
+from app.database.models import Barang
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+items = session.query(Barang).all()
 
 router = APIRouter()
 
