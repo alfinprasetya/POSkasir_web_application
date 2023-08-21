@@ -1,37 +1,29 @@
-""" Products API Routes """
+""" Products API Router """
 from fastapi import APIRouter
-from sqlalchemy.orm import sessionmaker
-from app.database.db import engine
-from app.database.models import Barang
-
-Session = sessionmaker(bind=engine)
-session = Session()
-
-items = session.query(Barang).all()
+from app.validator.products_validator import ProductsPayload
+import app.services.products_service as service
 
 router = APIRouter()
 
 @router.get("/")
 async def get_products():
-    """ Implement your read logic here """
+    """ Get all products """
+    items = await service.get_products()
     return items
 
-# @router.get("/{product_id}")
-# async def get_product_by_id(product_id: int):
-#     """ Implement your read single product logic here """
-#     return {"message": f"Read product {product_id}"}
-#
-# @router.post("/")
-# async def create_product():
-#     """ Implement your create logic here """
-#     return {"message": "Create new product"}
-#
-# @router.put("/{product_id}")
-# async def update_product(product_id: int):
-#     """ Implement your update logic here """
-#     return {"message": f"Update product {product_id}"}
-#
-# @router.delete("/{product_id}")
-# async def delete_product(product_id: int):
-#     """ Implement your delete logic here """
-#     return {"message": f"Delete product {product_id}"}#
+@router.get("/{id_product}")
+async def get_product_by_id(id_product: str):
+    """ Get product by id """
+    item = await service.get_product_by_id(id_product)
+    return item
+
+@router.post("/", status_code=201, response_description="Created")
+async def create_product(product: ProductsPayload):
+    """ Create product """
+    id_product = await service.create_product(product)
+    return {"id_product": id_product}
+
+@router.delete("/{id_product}")
+async def delete_product_by_id(id_product: str):
+    """ Delete product """
+    await service.delete_product_by_id(id_product)

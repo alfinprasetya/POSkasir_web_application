@@ -4,25 +4,17 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-class Barang(Base):
+class Products(Base):
     """ Table Barang Object """
-    __tablename__ = "barang"
+    __tablename__ = "products"
 
-    id_produk = Column("id", String, primary_key=True)
-    produk = Column("produk", String)
-    satuan = Column("satuan", String)
-    jumlah = Column("jumlah", Integer)
+    id_product = Column("id", String, primary_key=True)
+    product = Column("product", String)
+    unit = Column("unit", String)
+    qty = Column("qty", Integer)
 
-    def __init__(self, id_produk, produk, satuan, jumlah):
-        self.id_produk = id_produk
-        self.produk = produk
-        self.satuan = satuan
-        self.jumlah = jumlah
-
-    def __repr__(self):
-        return str({
-            "id": self.id,
-            "produk": self.produk,
-            "satuan": self.satuan,
-            "jumlah": self.jumlah
-        })
+    def __init__(self, id_product, product, unit, qty):
+        self.id_product = id_product
+        self.product = product
+        self.unit = unit
+        self.qty = qty

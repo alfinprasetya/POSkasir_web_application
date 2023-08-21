@@ -144,11 +144,11 @@
           <tbody>
             {% for item in items %}
             <tr>
-              <td>{{ item.id_produk }}</td>
-              <td>{{ item.produk }}</td>
-              <td>{{ item.satuan }}</td>
+              <td>{{ item.id_product }}</td>
+              <td>{{ item.product }}</td>
+              <td>{{ item.unit }}</td>
               <td 
-                {% if item.jumlah == 0 %}
+                {% if item.qty == 0 %}
                 style="color: red;"
                 {% endif %}
               >{{ item.jumlah }}</td>
